@@ -111,14 +111,18 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Always tell the browser it worked so the ruse stays intact,
-  // regardless of whether email sending is configured yet.
-  res.status(200).json({ received: true });
-
+  // IMPORTANT: both sends are awaited BEFORE responding. Vercel's
+  // serverless runtime can freeze/terminate the function as soon as the
+  // response is sent — code left running "in the background" after
+  // res.json() is not guaranteed to finish. Responding first and emailing
+  // "after" (the previous approach here) meant these Resend calls were
+  // getting cut off before they completed, so nothing ever actually sent,
+  // with no error either, since the function was frozen, not failing.
   if (!RESEND_API_KEY) {
     console.warn('RESEND_API_KEY not set — skipping email send for submission:', {
       platform, leagueName, legalName, phone, email,
     });
+    res.status(200).json({ received: true });
     return;
   }
 
@@ -141,4 +145,8 @@ module.exports = async (req, res) => {
   } catch (err) {
     console.error('Failed to send owner notification email:', err);
   }
+
+  // Always tell the browser it worked so the ruse stays intact,
+  // regardless of whether either send above succeeded.
+  res.status(200).json({ received: true });
 };

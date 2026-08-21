@@ -117,15 +117,18 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Tell the browser it worked right away; the actual send happens after.
-  // If RESEND_API_KEY isn't configured yet, the form still "succeeds" for
-  // the visitor, but nothing is sent — check Vercel function logs.
-  res.status(200).json({ ok: true });
-
+  // IMPORTANT: the email send is awaited BEFORE responding. Vercel's
+  // serverless runtime can freeze/terminate the function as soon as the
+  // response is sent — code left running "in the background" after
+  // res.json() is not guaranteed to finish. Sending first and emailing
+  // "after" (the previous approach here) meant the Resend call was
+  // getting cut off before it completed, so nothing ever actually sent,
+  // with no error either, since the function was frozen, not failing.
   if (!RESEND_API_KEY) {
     console.warn('RESEND_API_KEY not set — skipping email send for contact form submission:', {
       name, email, source,
     });
+    res.status(200).json({ ok: true });
     return;
   }
 
@@ -140,5 +143,9 @@ module.exports = async (req, res) => {
     });
   } catch (err) {
     console.error('Failed to send contact form notification email:', err);
+    // Still tell the visitor it succeeded — a delivery hiccup on our end
+    // shouldn't surface as an error in their browser.
   }
+
+  res.status(200).json({ ok: true });
 };

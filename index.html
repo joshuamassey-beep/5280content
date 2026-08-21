@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>5280 Content &middot; Elevated Ideas. Exceptional Outcomes.</title>
 <meta name="description" content="5280 Content is situated in the mountains of Colorado USA. Our digital content studio builds it all. Apps, sites, graphic design and video, utilites and services that fill a real need." />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%27http:%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox=%270%200%2064%2064%27%3E%3Crect%20width=%2764%27%20height=%2764%27%20rx=%2714%27%20fill=%27%230b1d2d%27%2F%3E%3Cpath%20d=%27M8%2046%20L24%2020%20L32%2032%20L40%2014%20L58%2046%20Z%27%20fill=%27%23f97316%27%2F%3E%3C%2Fsvg%3E" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -50,9 +53,7 @@
     align-items: center;
     text-decoration: none;
   }
-  .brand-mark { height: 34px; width: 34px; display: block; border-radius: 8px; }
-  .brand-word { margin-left: 10px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.02em; color: var(--orange); }
-  .brand-word em { font-style: normal; font-weight: 600; color: var(--navy); margin-left: 4px; }
+  .brand img { height: 36px; width: auto; display: block; }
   .nav a.cta {
     text-decoration: none;
     font-size: 0.9rem;
@@ -66,43 +67,15 @@
   .nav a.cta:hover { background: #e05f0f; }
 
   .hero-banner {
-    position: relative;
     width: 100%;
-    min-height: 460px;
     background: var(--navy);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 0;
   }
-  .hero-scene {
-    position: absolute;
-    inset: 0;
+  .hero-banner img {
     width: 100%;
-    height: 100%;
-  }
-  .hero-tagline {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 24px;
-  }
-  .hero-tagline .eyebrow {
-    margin: 0 0 14px;
-    color: var(--orange);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-  .hero-tagline h1 {
-    margin: 0;
-    color: var(--white);
-    font-size: clamp(2.1rem, 5vw, 3.6rem);
-    font-weight: 800;
-    letter-spacing: 0.01em;
-    line-height: 1.15;
-    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    max-height: 620px;
+    object-fit: cover;
+    display: block;
   }
   .hero-copy {
     background: var(--navy);
@@ -212,48 +185,16 @@
 </head>
 <body>
   <div class="nav">
-    <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0b1d2d"/><path d="M8 46 L24 20 L32 32 L40 14 L58 46 Z" fill="#f97316"/></svg><span class="brand-word">5280<em>Content</em></span></a>
+    <a class="brand" href="/"><img src="/assets/logo-nav.png" alt="5280 Content" /></a>
     <a class="cta" href="mailto:joshuamassey@me.com?subject=Hello%20from%205280Content.com">Get in touch</a>
   </div>
 
   <div class="hero-banner">
-    <svg class="hero-scene" viewBox="0 0 1600 620" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#0b1d2d"/>
-          <stop offset="55%" stop-color="#1e3a5f"/>
-          <stop offset="100%" stop-color="#f97316" stop-opacity="0.55"/>
-        </linearGradient>
-      </defs>
-      <rect width="1600" height="620" fill="url(#sky)"/>
-      <path d="M0 460 L120 360 L220 430 L320 300 L430 420 L540 340 L650 440 L760 320 L880 430 L1000 350 L1120 440 L1240 330 L1360 430 L1480 360 L1600 440 L1600 620 L0 620 Z" fill="#152a3f" opacity="0.85"/>
-      <g fill="#0b1d2d">
-        <rect x="90" y="440" width="46" height="140"/>
-        <rect x="150" y="400" width="34" height="180"/>
-        <rect x="200" y="460" width="40" height="120"/>
-        <rect x="255" y="380" width="30" height="200"/>
-        <rect x="300" y="430" width="50" height="150"/>
-        <rect x="370" y="410" width="36" height="170"/>
-        <rect x="420" y="460" width="44" height="120"/>
-        <rect x="480" y="390" width="30" height="190"/>
-        <rect x="900" y="430" width="42" height="150"/>
-        <rect x="960" y="400" width="34" height="180"/>
-        <rect x="1010" y="450" width="46" height="130"/>
-        <rect x="1070" y="380" width="30" height="200"/>
-        <rect x="1120" y="430" width="50" height="150"/>
-        <rect x="1190" y="410" width="36" height="170"/>
-        <rect x="1240" y="460" width="44" height="120"/>
-        <rect x="1300" y="390" width="30" height="190"/>
-      </g>
-    </svg>
-    <div class="hero-tagline">
-      <p class="eyebrow">Denver, CO &middot; Product Studio</p>
-      <h1>Elevated Ideas.<br>Exceptional Outcomes.</h1>
-    </div>
+    <img src="/assets/hero.jpg" alt="5280 Content &mdash; Elevated Ideas. Exceptional Outcomes. Denver skyline at dusk." />
   </div>
   <div class="hero-copy">
     <div class="inner">
-            <p>We build apps, sites, and services that solve a <strong>real</strong> problem &mdash; nothing built just to exist. 5280 is the elevated launch pad for whatever digital service a small or medium-sized business needs. Your business deserves the same level of tools major corporations use, but at a scale you can afford. It's the same standard on everything we ship: <strong>elevated ideas, exceptional outcomes.</strong></p>
+      <p>We build apps, sites, and services that solve a <strong>real</strong> problem &mdash; nothing built just to exist. 5280 is the elevated launch pad for whatever digital service a small or medium-sized business needs. Your business deserves the same level of tools major corporations use, but at a scale you can afford. It's the same standard on everything we ship: <strong>elevated ideas, exceptional outcomes.</strong></p>
       <a class="btn" href="#products">See what we're building</a>
     </div>
   </div>

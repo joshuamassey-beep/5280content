@@ -75,6 +75,7 @@
     width: 100%;
     max-height: 620px;
     object-fit: cover;
+    object-position: center top;
     display: block;
   }
   .hero-copy {
@@ -82,7 +83,7 @@
     padding: 44px 24px 64px;
   }
   .hero-copy .inner {
-    max-width: 760px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
   }
@@ -180,6 +181,20 @@
     color: var(--muted);
     font-size: 0.85rem;
     padding: 0 24px 50px;
+  }
+
+  @media (max-width: 640px) {
+    .nav { padding: 16px 20px; }
+    .brand img { height: 28px; }
+    .nav a.cta { padding: 8px 14px; font-size: 0.85rem; }
+    .hero-banner img { max-height: 320px; }
+    .hero-copy { padding: 32px 20px 44px; }
+    .hero-copy p { font-size: 1rem; line-height: 1.6; }
+    .hero-copy a.btn { padding: 12px 24px; font-size: 0.95rem; }
+    .section-heading { margin: 44px auto 0; }
+    .section-heading h2 { font-size: 1.4rem; }
+    .grid { margin: 24px auto 0; padding: 0 20px 60px; gap: 14px; }
+    a.card { padding: 20px; }
   }
 </style>
 </head>

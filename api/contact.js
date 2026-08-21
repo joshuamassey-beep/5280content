@@ -67,24 +67,35 @@ function notificationEmailHtml({ name, email, message, source }) {
   </div>`;
 }
 
+// A hard cap on how long we'll wait on Resend, so a slow/unresponsive API
+// can't stall this function up to (or past) Vercel's own execution limit.
+const SEND_TIMEOUT_MS = 8000;
+
 async function sendEmail({ to, subject, html, replyTo }) {
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: FROM_EMAIL,
-      to,
-      subject,
-      html,
-      reply_to: replyTo,
-    }),
-  });
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(`Resend error ${res.status}: ${body}`);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), SEND_TIMEOUT_MS);
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to,
+        subject,
+        html,
+        reply_to: replyTo,
+      }),
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      throw new Error(`Resend error ${res.status}: ${body}`);
+    }
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 

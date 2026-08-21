@@ -289,6 +289,27 @@
     cursor: pointer;
     margin-top: 4px;
     font-family: inherit;
+    position: relative;
+  }
+  .contact-submit.is-loading {
+    color: transparent;
+    pointer-events: none;
+  }
+  .contact-submit.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: contact-spin 0.7s linear infinite;
+  }
+  @keyframes contact-spin {
+    to { transform: rotate(360deg); }
   }
   .contact-status {
     min-height: 1.2em;
@@ -419,23 +440,37 @@
         website: form.website.value,
       };
       btn.disabled = true;
-      statusEl.textContent = 'Sending...';
+      btn.classList.add('is-loading');
+      statusEl.textContent = 'Sending your message...';
       statusEl.className = 'contact-status';
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
       try {
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
+          signal: controller.signal,
         });
+        clearTimeout(timeoutId);
         if (!res.ok) throw new Error('Request failed');
         statusEl.textContent = "Thanks \u2014 we'll get back to you soon.";
         statusEl.className = 'contact-status ok';
         form.reset();
+        btn.classList.remove('is-loading');
+        btn.disabled = false;
         setTimeout(closeContactModal, 1800);
       } catch (err) {
-        statusEl.textContent = 'Something went wrong \u2014 please try again, or email hello@5280content.com directly.';
+        clearTimeout(timeoutId);
+        const timedOut = err && err.name === 'AbortError';
+        statusEl.textContent = timedOut
+          ? 'This is taking longer than expected \u2014 please try again in a moment, or email hello@5280content.com directly.'
+          : 'Something went wrong \u2014 please try again, or email hello@5280content.com directly.';
         statusEl.className = 'contact-status err';
         btn.disabled = false;
+        btn.classList.remove('is-loading');
       }
     });
   </script>

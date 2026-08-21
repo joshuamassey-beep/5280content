@@ -16,6 +16,8 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || 'onboarding@resend.dev';
 const OWNER_EMAIL = process.env.OWNER_EMAIL || 'joshuamassey@me.com';
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -115,10 +117,16 @@ module.exports = async (req, res) => {
     }
   }
 
-  const { platform, leagueName, legalName, phone, email } = data || {};
+  const { platform, leagueName, legalName, phone } = data || {};
+  const email = (data && data.email || '').trim();
 
   if (!platform || !leagueName || !legalName || !phone || !email) {
     res.status(400).json({ error: 'Missing required fields' });
+    return;
+  }
+
+  if (!EMAIL_RE.test(email)) {
+    res.status(400).json({ error: 'Invalid email address' });
     return;
   }
 

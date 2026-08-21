@@ -10,4 +10,4 @@ Each product has its own file in this folder:
 - `territory-text.md`
 - `massive-empire.md`
 
-Companion hero-image / icon prompts (for a graphic designer or an AI image tool) live in the doc Claude sent alongside this update — `5280-graphics-and-video-prompts.md` — so both are together the next time this comes up.
+Companion hero-image / icon prompts (for a graphic designer or an AI image tool) live at `/docs/graphics-and-video-prompts.md` in this repo, so both are together the next time this comes up. The planned outline for the Massive Empire Fantasy Football subpages is also in `/docs`.

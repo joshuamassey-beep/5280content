@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>5280 Content &middot; Elevated Ideas. Exceptional Outcomes.</title>
+<meta name="description" content="5280 Content is a Denver-based product studio building apps, sites, and services that fill a real need." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%27http:%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox=%270%200%2064%2064%27%3E%3Crect%20width=%2764%27%20height=%2764%27%20rx=%2714%27%20fill=%27%230b1d2d%27%2F%3E%3Cpath%20d=%27M8%2046%20L24%2020%20L32%2032%20L40%2014%20L58%2046%20Z%27%20fill=%27%23f97316%27%2F%3E%3C%2Fsvg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #0b1d2d;
+    --slate: #334155;
+    --steel: #64748b;
+    --light-gray: #e2e8f0;
+    --orange: #f97316;
+    --white: #ffffff;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --border: var(--light-gray);
+    --text: var(--navy);
+    --muted: var(--steel);
+    --accent: var(--orange);
+    --accent-2: var(--slate);
+    --pill-live: #1f9d55;
+    --pill-live-bg: #e7f8ee;
+    --pill-dev: #b8860b;
+    --pill-dev-bg: #fdf3d9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  a { color: inherit; }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 22px 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .brand-mark { height: 34px; width: 34px; display: block; border-radius: 8px; }
+  .brand-word { margin-left: 10px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.02em; color: var(--orange); }
+  .brand-word em { font-style: normal; font-weight: 600; color: var(--navy); margin-left: 4px; }
+  .nav a.cta {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--orange);
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+  }
+  .nav a.cta:hover { background: #e05f0f; }
+
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 460px;
+    background: var(--navy);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-tagline {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 24px;
+  }
+  .hero-tagline .eyebrow {
+    margin: 0 0 14px;
+    color: var(--orange);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .hero-tagline h1 {
+    margin: 0;
+    color: var(--white);
+    font-size: clamp(2.1rem, 5vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  .hero-copy {
+    background: var(--navy);
+    padding: 44px 24px 64px;
+  }
+  .hero-copy .inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-copy p {
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.7;
+    margin: 0 0 26px;
+  }
+  .hero-copy p strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+  .hero-copy a.btn {
+    display: inline-block;
+    text-decoration: none;
+    background: var(--orange);
+    color: var(--white);
+    font-weight: 600;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: background 0.15s ease;
+  }
+  .hero-copy a.btn:hover { background: #e05f0f; }
+
+  .section-heading {
+    max-width: 1160px;
+    margin: 64px auto 0;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .section-heading h2 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px;
+  }
+  .section-heading p {
+    color: var(--muted);
+    font-size: 1.02rem;
+    margin: 0;
+  }
+
+  .grid {
+    max-width: 1160px;
+    margin: 32px auto 0;
+    padding: 0 24px 90px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  a.card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  a.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(11, 29, 45, 0.1);
+    border-color: #cbd5e1;
+  }
+  .pill {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .pill.live { color: var(--pill-live); background: var(--pill-live-bg); }
+  .pill.dev { color: var(--pill-dev); background: var(--pill-dev-bg); }
+  .card h2 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 0 24px 50px;
+  }
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0b1d2d"/><path d="M8 46 L24 20 L32 32 L40 14 L58 46 Z" fill="#f97316"/></svg><span class="brand-word">5280<em>Content</em></span></a>
+    <a class="cta" href="mailto:joshuamassey@me.com?subject=Hello%20from%205280Content.com">Get in touch</a>
+  </div>
+
+  <div class="hero-banner">
+    <svg class="hero-scene" viewBox="0 0 1600 620" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0b1d2d"/>
+          <stop offset="55%" stop-color="#1e3a5f"/>
+          <stop offset="100%" stop-color="#f97316" stop-opacity="0.55"/>
+        </linearGradient>
+      </defs>
+      <rect width="1600" height="620" fill="url(#sky)"/>
+      <path d="M0 460 L120 360 L220 430 L320 300 L430 420 L540 340 L650 440 L760 320 L880 430 L1000 350 L1120 440 L1240 330 L1360 430 L1480 360 L1600 440 L1600 620 L0 620 Z" fill="#152a3f" opacity="0.85"/>
+      <g fill="#0b1d2d">
+        <rect x="90" y="440" width="46" height="140"/>
+        <rect x="150" y="400" width="34" height="180"/>
+        <rect x="200" y="460" width="40" height="120"/>
+        <rect x="255" y="380" width="30" height="200"/>
+        <rect x="300" y="430" width="50" height="150"/>
+        <rect x="370" y="410" width="36" height="170"/>
+        <rect x="420" y="460" width="44" height="120"/>
+        <rect x="480" y="390" width="30" height="190"/>
+        <rect x="900" y="430" width="42" height="150"/>
+        <rect x="960" y="400" width="34" height="180"/>
+        <rect x="1010" y="450" width="46" height="130"/>
+        <rect x="1070" y="380" width="30" height="200"/>
+        <rect x="1120" y="430" width="50" height="150"/>
+        <rect x="1190" y="410" width="36" height="170"/>
+        <rect x="1240" y="460" width="44" height="120"/>
+        <rect x="1300" y="390" width="30" height="190"/>
+      </g>
+    </svg>
+    <div class="hero-tagline">
+      <p class="eyebrow">Denver, CO &middot; Product Studio</p>
+      <h1>Elevated Ideas.<br>Exceptional Outcomes.</h1>
+    </div>
+  </div>
+  <div class="hero-copy">
+    <div class="inner">
+      <p>We build apps, sites, and services that solve a <strong>real</strong> problem &mdash; nothing built just to exist. Every product launches lean under the 5280 name, and the ones that prove themselves earn a name of their own. It's the same standard on everything we ship: <strong>elevated ideas, exceptional outcomes.</strong></p>
+      <a class="btn" href="#products">See what we're building</a>
+    </div>
+  </div>
+
+  <div class="section-heading">
+    <h2>Our Products</h2>
+    <p>Live tools and works in progress, all built on the same standard.</p>
+  </div>
+
+  <div class="grid" id="products">
+    <a class="card" href="/products/chairside.html">
+      <span class="pill dev">In Development</span>
+      <h2>Chairside</h2>
+      <p>SMS booking and reminders built for stylists and salons &mdash; fewer no-shows, easier rebooking.</p>
+    </a>
+
+    <a class="card" href="/products/routeloop.html">
+      <span class="pill dev">In Development</span>
+      <h2>RouteLoop</h2>
+      <p>SMS scheduling and dispatch for route-based service businesses, from inspections to maintenance.</p>
+    </a>
+
+    <a class="card" href="/products/chasing36.html">
+      <span class="pill live">Live</span>
+      <h2>Chasing36</h2>
+      <p>A passion project chronicling one golfer's pursuit of shooting 36.</p>
+    </a>
+
+    <a class="card" href="/products/territory-text.html">
+      <span class="pill dev">In Development</span>
+      <h2>TerritoryText</h2>
+      <p>Check ministry territories in and out by text, logged automatically to a shared database.</p>
+    </a>
+
+    <a class="card" href="/massiveempirefantasyfootball.html">
+      <span class="pill live">Live</span>
+      <h2>Massive Empire Fantasy Football Tool</h2>
+      <p>An invite-only analytics tool for fantasy football domination.</p>
+    </a>
+  </div>
+
+  <footer>&copy; 2026 5280 Content &middot; Denver, CO</footer>
+</body>
+</html>

@@ -64,9 +64,12 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--slate);
-    transition: color 0.15s ease;
+    border: 1.5px solid var(--border);
+    padding: 9px 16px;
+    border-radius: 8px;
+    transition: border-color 0.15s ease, color 0.15s ease;
   }
-  .nav a.secondary-link:hover { color: var(--orange); }
+  .nav a.secondary-link:hover { color: var(--orange); border-color: var(--orange); }
   .nav a.cta,
   .nav button.cta {
     text-decoration: none;
@@ -354,7 +357,7 @@
     <a class="card" href="/products/territory-text.html">
       <span class="pill dev">In Development</span>
       <h2>TerritoryText</h2>
-      <p>Check ministry territories in and out by text, logged automatically to a shared database.</p>
+      <p>Check outreach territories in and out from the web or by text, logged automatically.</p>
     </a>
 
     <a class="card" href="/massiveempirefantasyfootball.html">

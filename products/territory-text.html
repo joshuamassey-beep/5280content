@@ -111,7 +111,8 @@
     text-align: center;
     margin-top: 34px;
   }
-  a.btn {
+  a.btn,
+  button.btn {
     display: inline-block;
     text-decoration: none;
     background: var(--accent);
@@ -121,7 +122,8 @@
     border-radius: 10px;
     font-size: 1rem;
   }
-  a.btn:hover { background: #e85b2f; }
+  a.btn:hover,
+  button.btn:hover { background: #e85b2f; }
   a.btn.secondary {
     background: transparent;
     color: var(--text);
@@ -221,6 +223,99 @@
   .closing-block { text-align: center; }
   .closing-block h2 { font-size: 1.4rem; margin: 0 0 4px; }
   .closing-block p.tag { color: var(--muted); font-style: italic; margin: 0; }
+
+  .contact-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 29, 45, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .contact-overlay[hidden] { display: none; }
+  .contact-modal-box {
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 420px;
+    width: 100%;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(11, 29, 45, 0.35);
+  }
+  .contact-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 4px;
+  }
+  .contact-modal-box h3 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+    color: var(--navy);
+  }
+  .contact-sub {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  #contactForm label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 14px;
+  }
+  #contactForm input[type="text"],
+  #contactForm input[type="email"],
+  #contactForm textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    color: var(--navy);
+  }
+  #contactForm textarea { resize: vertical; }
+  .contact-submit {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin-top: 4px;
+    font-family: inherit;
+  }
+  .contact-status {
+    min-height: 1.2em;
+    font-size: 0.88rem;
+    margin: 10px 0 0;
+  }
+  .contact-status.ok { color: #1f9d55; }
+  .contact-status.err { color: #c0392b; }
+  button.cta,
+  button.btn {
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
@@ -233,31 +328,104 @@
     <header class="hero">
       <span class="pill dev">In Development</span>
       <h1>TerritoryText</h1>
-      <p class="tagline">Check territories in and out by text, logged automatically.</p>
+      <p class="tagline">Check outreach territories in and out from the web or by text, logged automatically.</p>
     </header>
 
-    
+
     <section>
       <h2>What it does</h2>
-      <p>TerritoryText replaces the paper sign-out sheet. Text a territory number to check it out, get an instant
-      confirmation, and text it back in when you're done &mdash; every check-in and check-out is logged
-      automatically to a shared database, so there's always a clear, up-to-date record of what's out and with whom.</p>
+      <p>TerritoryText replaces the paper sign-out sheet for door-to-door outreach teams. Check a territory in or
+      out from a simple web dashboard, or text a territory number for the same result on the go &mdash; either
+      way, every check-in and check-out is logged automatically to a shared record, so there's always a clear,
+      up-to-date view of what's out and with whom.</p>
       <ul>
-        <li><strong>Check-out by text</strong> &mdash; no app, no login, just a text message.</li>
-        <li><strong>Automatic logging</strong> &mdash; every action is recorded to a database in real time.</li>
-        <li><strong>Always-current status</strong> &mdash; see what's checked out and for how long, at a glance.</li>
+        <li><strong>Web dashboard</strong> &mdash; check territories in and out, and see status at a glance, from any device.</li>
+        <li><strong>Text option</strong> &mdash; no app required, check in or out with a simple text message.</li>
+        <li><strong>Automatic logging</strong> &mdash; every action is recorded in real time, no spreadsheet needed.</li>
       </ul>
     </section>
     <section>
       <h2>Who it's for</h2>
-      <p>Originally built to manage ministry territory maps for a congregation, and designed to be handed off to
-      other congregations that want the same system without the spreadsheet.</p>
+      <p>Built for groups that coordinate door-to-door community outreach and need a simple way to track which
+      areas have been covered. Designed to be handed off to any team running a similar territory system &mdash;
+      no more shared spreadsheets or paper sign-out sheets.</p>
     </section>
     
 
     <div class="cta-row">
-      <a class="btn" href="mailto:joshuamassey@me.com?subject=TerritoryText%20-%20Interested">Get in touch</a>
+      <button type="button" class="btn" onclick="openContactModal('territory-text')">Get in touch</button>
     </div>
   </div>
+
+  <div class="contact-overlay" id="contactOverlay" hidden>
+    <div class="contact-modal-box" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <button type="button" class="contact-close" aria-label="Close" onclick="closeContactModal()">&times;</button>
+      <h3 id="contactTitle">Get in touch</h3>
+      <p class="contact-sub">Tell us a bit about what you need &mdash; we'll follow up by email.</p>
+      <form id="contactForm">
+        <input type="hidden" name="source" id="contactSource" value="" />
+        <input type="text" name="website" id="contactHoneypot" class="hp-field" tabindex="-1" autocomplete="off" />
+        <label>Name
+          <input type="text" name="name" required />
+        </label>
+        <label>Email
+          <input type="email" name="email" required />
+        </label>
+        <label>Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="btn contact-submit">Send message</button>
+        <p class="contact-status" id="contactStatus" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openContactModal(source) {
+      document.getElementById('contactSource').value = source;
+      document.getElementById('contactOverlay').hidden = false;
+    }
+    function closeContactModal() {
+      document.getElementById('contactOverlay').hidden = true;
+    }
+    document.getElementById('contactOverlay').addEventListener('click', function (e) {
+      if (e.target === this) closeContactModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeContactModal();
+    });
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const statusEl = document.getElementById('contactStatus');
+      const btn = form.querySelector('.contact-submit');
+      const payload = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
+        source: form.source.value,
+        website: form.website.value,
+      };
+      btn.disabled = true;
+      statusEl.textContent = 'Sending...';
+      statusEl.className = 'contact-status';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('Request failed');
+        statusEl.textContent = "Thanks \u2014 we'll get back to you soon.";
+        statusEl.className = 'contact-status ok';
+        form.reset();
+        setTimeout(closeContactModal, 1800);
+      } catch (err) {
+        statusEl.textContent = 'Something went wrong \u2014 please try again, or email hello@5280content.com directly.';
+        statusEl.className = 'contact-status err';
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>

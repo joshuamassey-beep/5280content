@@ -111,7 +111,8 @@
     text-align: center;
     margin-top: 34px;
   }
-  a.btn {
+  a.btn,
+  button.btn {
     display: inline-block;
     text-decoration: none;
     background: var(--accent);
@@ -121,7 +122,8 @@
     border-radius: 10px;
     font-size: 1rem;
   }
-  a.btn:hover { background: #e85b2f; }
+  a.btn:hover,
+  button.btn:hover { background: #e85b2f; }
   a.btn.secondary {
     background: transparent;
     color: var(--text);
@@ -221,6 +223,99 @@
   .closing-block { text-align: center; }
   .closing-block h2 { font-size: 1.4rem; margin: 0 0 4px; }
   .closing-block p.tag { color: var(--muted); font-style: italic; margin: 0; }
+
+  .contact-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 29, 45, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .contact-overlay[hidden] { display: none; }
+  .contact-modal-box {
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 420px;
+    width: 100%;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(11, 29, 45, 0.35);
+  }
+  .contact-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 4px;
+  }
+  .contact-modal-box h3 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+    color: var(--navy);
+  }
+  .contact-sub {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  #contactForm label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 14px;
+  }
+  #contactForm input[type="text"],
+  #contactForm input[type="email"],
+  #contactForm textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    color: var(--navy);
+  }
+  #contactForm textarea { resize: vertical; }
+  .contact-submit {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin-top: 4px;
+    font-family: inherit;
+  }
+  .contact-status {
+    min-height: 1.2em;
+    font-size: 0.88rem;
+    margin: 10px 0 0;
+  }
+  .contact-status.ok { color: #1f9d55; }
+  .contact-status.err { color: #c0392b; }
+  button.cta,
+  button.btn {
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
@@ -256,8 +351,79 @@
     
 
     <div class="cta-row">
-      <a class="btn" href="mailto:joshuamassey@me.com?subject=Chairside%20-%20Interested">Get in touch</a>
+      <button type="button" class="btn" onclick="openContactModal('chairside')">Get in touch</button>
     </div>
   </div>
+
+  <div class="contact-overlay" id="contactOverlay" hidden>
+    <div class="contact-modal-box" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <button type="button" class="contact-close" aria-label="Close" onclick="closeContactModal()">&times;</button>
+      <h3 id="contactTitle">Get in touch</h3>
+      <p class="contact-sub">Tell us a bit about what you need &mdash; we'll follow up by email.</p>
+      <form id="contactForm">
+        <input type="hidden" name="source" id="contactSource" value="" />
+        <input type="text" name="website" id="contactHoneypot" class="hp-field" tabindex="-1" autocomplete="off" />
+        <label>Name
+          <input type="text" name="name" required />
+        </label>
+        <label>Email
+          <input type="email" name="email" required />
+        </label>
+        <label>Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="btn contact-submit">Send message</button>
+        <p class="contact-status" id="contactStatus" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openContactModal(source) {
+      document.getElementById('contactSource').value = source;
+      document.getElementById('contactOverlay').hidden = false;
+    }
+    function closeContactModal() {
+      document.getElementById('contactOverlay').hidden = true;
+    }
+    document.getElementById('contactOverlay').addEventListener('click', function (e) {
+      if (e.target === this) closeContactModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeContactModal();
+    });
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const statusEl = document.getElementById('contactStatus');
+      const btn = form.querySelector('.contact-submit');
+      const payload = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
+        source: form.source.value,
+        website: form.website.value,
+      };
+      btn.disabled = true;
+      statusEl.textContent = 'Sending...';
+      statusEl.className = 'contact-status';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('Request failed');
+        statusEl.textContent = "Thanks \u2014 we'll get back to you soon.";
+        statusEl.className = 'contact-status ok';
+        form.reset();
+        setTimeout(closeContactModal, 1800);
+      } catch (err) {
+        statusEl.textContent = 'Something went wrong \u2014 please try again, or email hello@5280content.com directly.';
+        statusEl.className = 'contact-status err';
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>

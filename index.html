@@ -54,7 +54,21 @@
     text-decoration: none;
   }
   .brand img { height: 36px; width: auto; display: block; }
-  .nav a.cta {
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .nav a.secondary-link {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--slate);
+    transition: color 0.15s ease;
+  }
+  .nav a.secondary-link:hover { color: var(--orange); }
+  .nav a.cta,
+  .nav button.cta {
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 600;
@@ -64,7 +78,8 @@
     border-radius: 8px;
     transition: background 0.15s ease;
   }
-  .nav a.cta:hover { background: #e05f0f; }
+  .nav a.cta:hover,
+  .nav button.cta:hover { background: #e05f0f; }
 
   .hero-banner {
     width: 100%;
@@ -186,7 +201,10 @@
   @media (max-width: 640px) {
     .nav { padding: 16px 20px; }
     .brand img { height: 28px; }
-    .nav a.cta { padding: 8px 14px; font-size: 0.85rem; }
+    .nav-links { gap: 10px; }
+    .nav a.secondary-link { display: none; }
+    .nav a.cta,
+  .nav button.cta { padding: 8px 14px; font-size: 0.85rem; }
     .hero-banner img { max-height: 320px; }
     .hero-copy { padding: 32px 20px 44px; }
     .hero-copy p { font-size: 1rem; line-height: 1.6; }
@@ -196,12 +214,108 @@
     .grid { margin: 24px auto 0; padding: 0 20px 60px; gap: 14px; }
     a.card { padding: 20px; }
   }
+
+  .contact-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 29, 45, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .contact-overlay[hidden] { display: none; }
+  .contact-modal-box {
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 420px;
+    width: 100%;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(11, 29, 45, 0.35);
+  }
+  .contact-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 4px;
+  }
+  .contact-modal-box h3 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+    color: var(--navy);
+  }
+  .contact-sub {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  #contactForm label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 14px;
+  }
+  #contactForm input[type="text"],
+  #contactForm input[type="email"],
+  #contactForm textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    color: var(--navy);
+  }
+  #contactForm textarea { resize: vertical; }
+  .contact-submit {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin-top: 4px;
+    font-family: inherit;
+  }
+  .contact-status {
+    min-height: 1.2em;
+    font-size: 0.88rem;
+    margin: 10px 0 0;
+  }
+  .contact-status.ok { color: #1f9d55; }
+  .contact-status.err { color: #c0392b; }
+  button.cta,
+  button.btn {
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
   <div class="nav">
     <a class="brand" href="/"><img src="/assets/logo-nav.png" alt="5280 Content" /></a>
-    <a class="cta" href="mailto:joshuamassey@me.com?subject=Hello%20from%205280Content.com">Get in touch</a>
+    <div class="nav-links">
+      <a class="secondary-link" href="#products">See what we're building</a>
+      <button type="button" class="cta" onclick="openContactModal('homepage')">Get in touch</button>
+    </div>
   </div>
 
   <div class="hero-banner">
@@ -210,13 +324,12 @@
   <div class="hero-copy">
     <div class="inner">
       <p>We build apps, sites, and services that solve a <strong>real</strong> problem &mdash; nothing built just to exist. 5280 is the elevated launch pad for whatever digital service a small or medium-sized business needs. Your business deserves the same level of tools major corporations use, but at a scale you can afford. It's the same standard on everything we ship: <strong>elevated ideas, exceptional outcomes.</strong></p>
-      <a class="btn" href="#products">See what we're building</a>
     </div>
   </div>
 
   <div class="section-heading">
     <h2>Our Products</h2>
-    <p>Live tools and works in progress, all built on the same standard.</p>
+    <p>See what's already live, and get a preview of what's coming next &mdash; all built to the same standard.</p>
   </div>
 
   <div class="grid" id="products">
@@ -226,10 +339,10 @@
       <p>SMS booking and reminders built for stylists and salons &mdash; fewer no-shows, easier rebooking.</p>
     </a>
 
-    <a class="card" href="/products/routeloop.html">
+    <a class="card" href="/products/excel-a-route.html">
       <span class="pill dev">In Development</span>
-      <h2>RouteLoop</h2>
-      <p>SMS scheduling and dispatch for route-based service businesses, from inspections to maintenance.</p>
+      <h2>Excel-a-Route</h2>
+      <p>Automated scheduling and dispatch for route-based service businesses, from inspections to maintenance.</p>
     </a>
 
     <a class="card" href="/products/chasing36.html">
@@ -252,5 +365,76 @@
   </div>
 
   <footer>&copy; 2026 5280 Content &middot; Denver, CO</footer>
+
+  <div class="contact-overlay" id="contactOverlay" hidden>
+    <div class="contact-modal-box" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <button type="button" class="contact-close" aria-label="Close" onclick="closeContactModal()">&times;</button>
+      <h3 id="contactTitle">Get in touch</h3>
+      <p class="contact-sub">Tell us a bit about what you need &mdash; we'll follow up by email.</p>
+      <form id="contactForm">
+        <input type="hidden" name="source" id="contactSource" value="" />
+        <input type="text" name="website" id="contactHoneypot" class="hp-field" tabindex="-1" autocomplete="off" />
+        <label>Name
+          <input type="text" name="name" required />
+        </label>
+        <label>Email
+          <input type="email" name="email" required />
+        </label>
+        <label>Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="btn contact-submit">Send message</button>
+        <p class="contact-status" id="contactStatus" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openContactModal(source) {
+      document.getElementById('contactSource').value = source;
+      document.getElementById('contactOverlay').hidden = false;
+    }
+    function closeContactModal() {
+      document.getElementById('contactOverlay').hidden = true;
+    }
+    document.getElementById('contactOverlay').addEventListener('click', function (e) {
+      if (e.target === this) closeContactModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeContactModal();
+    });
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const statusEl = document.getElementById('contactStatus');
+      const btn = form.querySelector('.contact-submit');
+      const payload = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
+        source: form.source.value,
+        website: form.website.value,
+      };
+      btn.disabled = true;
+      statusEl.textContent = 'Sending...';
+      statusEl.className = 'contact-status';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('Request failed');
+        statusEl.textContent = "Thanks \u2014 we'll get back to you soon.";
+        statusEl.className = 'contact-status ok';
+        form.reset();
+        setTimeout(closeContactModal, 1800);
+      } catch (err) {
+        statusEl.textContent = 'Something went wrong \u2014 please try again, or email hello@5280content.com directly.';
+        statusEl.className = 'contact-status err';
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>

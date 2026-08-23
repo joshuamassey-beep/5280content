@@ -26,21 +26,74 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+// "Galactic" dispatch script used to give the rejection email an
+// intercepted-transmission feel. This is Elder Futhark (a real, public-domain
+// historical writing system already part of the Unicode standard) rather
+// than an actual Star Wars "Aurebesh" font/asset, both to avoid any
+// trademark/licensing issue and because plain Unicode text renders reliably
+// in email clients, unlike a custom @font-face most clients would strip.
+const GALACTIC_MAP = {
+  a: 'ᚨ', b: 'ᛒ', c: 'ᚲ', d: 'ᛞ', e: 'ᛖ', f: 'ᚠ', g: 'ᚷ', h: 'ᚺ', i: 'ᛁ', j: 'ᛃ',
+  k: 'ᚲ', l: 'ᛚ', m: 'ᛗ', n: 'ᚾ', o: 'ᛟ', p: 'ᛈ', q: 'ᚲ', r: 'ᚱ', s: 'ᛊ', t: 'ᛏ',
+  u: 'ᚢ', v: 'ᚡ', w: 'ᚹ', x: 'ᛊ', y: 'ᚤ', z: 'ᛉ',
+};
+
+function toGalactic(str) {
+  return String(str)
+    .split('')
+    .map((ch) => {
+      const lo = ch.toLowerCase();
+      if (GALACTIC_MAP[lo]) return GALACTIC_MAP[lo];
+      if (ch === ' ') return ' ᛫ ';
+      return ch;
+    })
+    .join('');
+}
+
 function rejectionEmailHtml({ legalName, leagueName, platform }) {
   const name = escapeHtml(legalName).split(' ')[0] || 'Applicant';
+  const league = escapeHtml(leagueName);
+  const dispatchEnglish = `Greetings, ${name}. This transmission comes by order of Darth Jos.`;
+  const dispatchGalactic = toGalactic(dispatchEnglish.toUpperCase());
   return `
   <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; background:#0b0d12; color:#e8eaf0; padding:32px;">
     <div style="max-width:520px; margin:0 auto; background:#161a22; border:1px solid #262c38; border-radius:14px; padding:30px;">
-      <p style="color:#c0392b; text-transform:uppercase; letter-spacing:0.08em; font-size:12px; margin:0 0 16px;">Application Status: Denied</p>
-      <h1 style="font-size:20px; margin:0 0 18px;">Greetings, ${name}.</h1>
+      <p style="color:#5a6272; text-transform:uppercase; letter-spacing:0.08em; font-size:12px; margin:0 0 20px;">Imperial Correspondence &mdash; Case File Opened</p>
+
+      <div style="border:1px solid #262c38; border-radius:8px; padding:16px 18px; margin:0 0 24px; background:#0f1218;">
+        <p style="color:#5a6272; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; margin:0 0 10px;">Imperial Transmission &mdash; Intercepted &amp; Transcribed</p>
+        <p style="font-size:16px; letter-spacing:0.05em; color:#8fd6ff; margin:0 0 12px; line-height:1.6; word-break:break-word;">${dispatchGalactic}</p>
+        <p style="color:#5a6272; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; margin:0 0 4px;">Translation</p>
+        <p style="color:#c7cbd6; font-size:14px; margin:0; line-height:1.5;">${escapeHtml(dispatchEnglish)}</p>
+      </div>
+
       <p style="color:#c7cbd6; line-height:1.6;">
-        Your request to join <strong>${escapeHtml(leagueName)}</strong> under the banner of the
-        Massive Empire Fantasy Football Tool has been reviewed by the Imperial Council.
+        Every cycle, thousands of petitions arrive seeking entry into <strong>${league}</strong> and
+        leagues like it &mdash; each one logged, stamped, and left to the lower offices. Yours was not
+        one of them.
       </p>
       <p style="color:#c7cbd6; line-height:1.6;">
-        Darth Jos has personally examined your ${escapeHtml(platform)} roster. He is not impressed.
-        The Empire does not share its trade analyzer, its waiver wire intelligence, or its
-        matchup predictions with pretenders to the throne.
+        Darth Jos moved to the front of the line personally, bypassing the Circumlocution Offices
+        himself &mdash; something almost no petitioner lives to mention twice.
+      </p>
+      <p style="color:#c7cbd6; line-height:1.6;">
+        He studied your record: your <strong>${escapeHtml(platform)}</strong> roster, your trades, your
+        waiver-wire timing, your standing in ${league}. He searched your feelings.
+        He said nothing for a long moment.
+      </p>
+      <p style="color:#c7cbd6; line-height:1.6;">
+        Then he filed his findings with the Imperial Council.
+      </p>
+      <p style="color:#c7cbd6; line-height:1.6;">
+        The Council convened. They reviewed the record. They weighed it against the standard expected
+        of anyone granted access to the Empire's galactic data and league operations.
+      </p>
+
+      <p style="color:#5a6272; text-transform:uppercase; letter-spacing:0.1em; font-size:12px; margin:26px 0 10px;">Their verdict:</p>
+      <div style="display:inline-block; border:3px solid #c0392b; color:#e05f4f; font-weight:800; font-size:20px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 18px; border-radius:4px; margin:0 0 20px; transform:rotate(-8deg);">Denied</div>
+
+      <p style="color:#c7cbd6; line-height:1.6;">
+        Your application to <strong>${league}</strong> has been denied.
       </p>
       <p style="color:#c7cbd6; line-height:1.6;">
         Perhaps when you have proven yourself worthy &mdash; or at the very least stopped starting

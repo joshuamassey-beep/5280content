@@ -50,9 +50,9 @@ function toGalactic(str) {
     .join('');
 }
 
-function rejectionEmailHtml({ legalName, leagueName, platform }) {
+function rejectionEmailHtml({ legalName, leagueName, teamName, platform }) {
   const name = escapeHtml(legalName).split(' ')[0] || 'Applicant';
-  const league = escapeHtml(leagueName);
+  const team = escapeHtml(teamName) || 'your team';
   const dispatchEnglish = `Greetings, ${name}. This transmission comes by order of Darth Jos.`;
   const dispatchGalactic = toGalactic(dispatchEnglish.toUpperCase());
   return `
@@ -68,36 +68,37 @@ function rejectionEmailHtml({ legalName, leagueName, platform }) {
       </div>
 
       <p style="color:#c7cbd6; line-height:1.6;">
-        Every cycle, thousands of petitions arrive seeking entry into <strong>${league}</strong> and
-        leagues like it &mdash; each one logged, stamped, and left to the lower offices. Yours was not
-        one of them.
+        Every cycle, thousands of teams like <strong>${team}</strong> petition for entry into the
+        Massive Empire Fantasy Football Tool. Each application is logged, stamped, and left to
+        circulate through the lower administrative outposts. Yours was not one of them.
       </p>
       <p style="color:#c7cbd6; line-height:1.6;">
-        Darth Jos moved to the front of the line personally, bypassing the Circumlocution Offices
-        himself &mdash; something almost no petitioner lives to mention twice.
+        Darth Jos moved <strong>${team}</strong> to the front of the line personally, bypassing the
+        Circumlocution Offices himself &mdash; something almost no petitioner lives to mention twice.
       </p>
       <p style="color:#c7cbd6; line-height:1.6;">
-        He studied your record: your <strong>${escapeHtml(platform)}</strong> roster, your trades, your
-        waiver-wire timing, your standing in ${league}. He searched your feelings.
-        He said nothing for a long moment.
+        He studied your <strong>${escapeHtml(platform)}</strong> history: past records, roster, trades,
+        waiver-wire timing. He searched his feelings &mdash; and possibly yours.
       </p>
       <p style="color:#c7cbd6; line-height:1.6;">
         Then he filed his findings with the Imperial Council.
       </p>
       <p style="color:#c7cbd6; line-height:1.6;">
-        The Council convened. They reviewed the record. They weighed it against the standard expected
-        of anyone granted access to the Empire's galactic data and league operations.
+        The Council convened. They reviewed the record and Darth&rsquo;s point of view. They weighed
+        all of it against the high standard expected of anyone granted access to the Empire&rsquo;s
+        galactic data and league operations.
       </p>
 
       <p style="color:#5a6272; text-transform:uppercase; letter-spacing:0.1em; font-size:12px; margin:26px 0 10px;">Their verdict:</p>
       <div style="display:inline-block; border:3px solid #c0392b; color:#e05f4f; font-weight:800; font-size:20px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 18px; border-radius:4px; margin:0 0 20px; transform:rotate(-8deg);">Denied</div>
 
       <p style="color:#c7cbd6; line-height:1.6;">
-        Your application to <strong>${league}</strong> has been denied.
+        Your application on behalf of <strong>${team}</strong> to the Massive Empire Fantasy Football
+        Tool has been denied.
       </p>
       <p style="color:#c7cbd6; line-height:1.6;">
-        Perhaps when you have proven yourself worthy &mdash; or at the very least stopped starting
-        a kicker on bye week &mdash; the Empire will reconsider your application.
+        ${name}, perhaps when you have proven yourself worthy &mdash; or at the very least stopped
+        starting a kicker on bye week &mdash; the Empire will reconsider your application.
       </p>
       <p style="color:#c7cbd6; line-height:1.6; margin-top:24px;">
         Until then, enjoy losing.
@@ -107,7 +108,7 @@ function rejectionEmailHtml({ legalName, leagueName, platform }) {
   </div>`;
 }
 
-function notificationEmailHtml({ platform, leagueName, legalName, phone, email }) {
+function notificationEmailHtml({ platform, leagueName, teamName, legalName, phone, email }) {
   const row = (label, value) => `
     <tr>
       <td style="padding:6px 12px 6px 0; color:#9aa3b2; font-size:13px; white-space:nowrap;">${label}</td>
@@ -123,6 +124,7 @@ function notificationEmailHtml({ platform, leagueName, legalName, phone, email }
         ${row('Phone', phone)}
         ${row('Platform', platform)}
         ${row('League name', leagueName)}
+        ${row('Proposed team name', teamName)}
       </table>
       <p style="color:#9aa3b2; font-size:12px; margin-top:24px;">Auto-reject email has been sent to the applicant.</p>
     </div>
@@ -170,10 +172,10 @@ module.exports = async (req, res) => {
     }
   }
 
-  const { platform, leagueName, legalName, phone } = data || {};
+  const { platform, leagueName, teamName, legalName, phone } = data || {};
   const email = (data && data.email || '').trim();
 
-  if (!platform || !leagueName || !legalName || !phone || !email) {
+  if (!platform || !leagueName || !teamName || !legalName || !phone || !email) {
     res.status(400).json({ error: 'Missing required fields' });
     return;
   }
@@ -192,7 +194,7 @@ module.exports = async (req, res) => {
   // with no error either, since the function was frozen, not failing.
   if (!RESEND_API_KEY) {
     console.warn('RESEND_API_KEY not set — skipping email send for submission:', {
-      platform, leagueName, legalName, phone, email,
+      platform, leagueName, teamName, legalName, phone, email,
     });
     res.status(200).json({ received: true });
     return;
@@ -202,7 +204,7 @@ module.exports = async (req, res) => {
     await sendEmail({
       to: email,
       subject: 'Your Application to Darth Jos’s Fantasy Football Empire',
-      html: rejectionEmailHtml({ legalName, leagueName, platform }),
+      html: rejectionEmailHtml({ legalName, leagueName, teamName, platform }),
     });
   } catch (err) {
     console.error('Failed to send rejection email:', err);
@@ -212,7 +214,7 @@ module.exports = async (req, res) => {
     await sendEmail({
       to: OWNER_EMAIL,
       subject: `New Empire Applicant: ${legalName}`,
-      html: notificationEmailHtml({ platform, leagueName, legalName, phone, email }),
+      html: notificationEmailHtml({ platform, leagueName, teamName, legalName, phone, email }),
     });
   } catch (err) {
     console.error('Failed to send owner notification email:', err);

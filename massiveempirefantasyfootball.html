@@ -393,6 +393,9 @@
         <label for="leagueName">League name</label>
         <input type="text" id="leagueName" name="leagueName" placeholder="e.g. The League of Extraordinary Gentlemen" required />
 
+        <label for="teamName">Proposed team name</label>
+        <input type="text" id="teamName" name="teamName" placeholder="e.g. The Circumlocution Crushers" required />
+
         <label for="legalName">Full legal name</label>
         <input type="text" id="legalName" name="legalName" placeholder="First and last name" required />
 
@@ -426,12 +429,15 @@
     const modalText = document.getElementById('modal-text');
     const modalCloseBtn = document.getElementById('modal-close-btn');
 
-    function showRejectionModal(legalName) {
+    function showRejectionModal(legalName, leagueName) {
       const firstName = (legalName || '').trim().split(/\s+/)[0] || 'Applicant';
+      const league = (leagueName || '').trim() || 'your league';
       modalText.innerHTML =
-        `You&rsquo;ve taken the first step in taking over your fantasy football league, <strong>${firstName}</strong>! ` +
-        `But seriously, while Darth Jos is reviewing your application, you should probably just give up &mdash; ` +
-        `Darth Jos will never take you on as a padawan. Nice try, <strong>${firstName}</strong>!`;
+        `I haven&rsquo;t felt a presence like this since last year&rsquo;s <strong>${league}</strong> season. ` +
+        `Yes&hellip; it&rsquo;s <strong>${firstName}</strong>! So, you want to join the Empire? Good, good. ` +
+        `But I should warn you: the Galactic Empire has become a bureaucratic nightmare. Before your ` +
+        `application even reaches the Imperial Council, it must pass through every planet&rsquo;s Circumlocution ` +
+        `Office. You might have better luck with your pad-and-paper draft cheat sheet.`;
       modalOverlay.classList.add('show');
     }
 
@@ -454,6 +460,7 @@
       const payload = {
         platform: document.getElementById('platform').value,
         leagueName: document.getElementById('leagueName').value,
+        teamName: document.getElementById('teamName').value,
         legalName: legalName,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
@@ -472,7 +479,7 @@
         btn.textContent = 'Request Invitation';
         statusEl.className = 'status show ok';
         statusEl.textContent = 'Your application has been received and is under review. You will hear back by email.';
-        showRejectionModal(legalName);
+        showRejectionModal(legalName, payload.leagueName);
       } catch (err) {
         btn.textContent = 'Request Invitation';
         statusEl.className = 'status show err';

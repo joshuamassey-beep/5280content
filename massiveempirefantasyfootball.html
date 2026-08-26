@@ -148,10 +148,24 @@
     border: 1px solid var(--accent);
     box-shadow: 0 0 60px var(--accent-glow);
     border-radius: 16px;
-    padding: 34px 32px;
-    max-width: 440px;
+    max-width: 640px;
     width: 100%;
     text-align: center;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+  }
+  .modal-box .modal-image {
+    flex: 0 0 200px;
+    width: 200px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .modal-box .modal-content {
+    flex: 1;
+    min-width: 0;
+    padding: 34px 32px;
   }
   .modal-box .modal-badge {
     display: inline-block;
@@ -176,6 +190,17 @@
     width: auto;
     padding: 11px 26px;
     font-size: 0.92rem;
+  }
+  @media (max-width: 560px) {
+    .modal-box {
+      flex-direction: column;
+      max-width: 440px;
+    }
+    .modal-box .modal-image {
+      flex: 0 0 180px;
+      width: 100%;
+      height: 180px;
+    }
   }
   .kicker {
     font-size: 0.75rem;
@@ -415,9 +440,12 @@
 
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal-box">
-      <span class="modal-badge">Application Received</span>
-      <p id="modal-text"></p>
-      <button type="button" id="modal-close-btn">Understood</button>
+      <img class="modal-image" src="assets/darth-jos.jpg" alt="Darth Jos" />
+      <div class="modal-content">
+        <span class="modal-badge">Application Under Review</span>
+        <div id="modal-text"></div>
+        <button type="button" id="modal-close-btn">Acknowledge Transmission</button>
+      </div>
     </div>
   </div>
 
@@ -429,15 +457,22 @@
     const modalText = document.getElementById('modal-text');
     const modalCloseBtn = document.getElementById('modal-close-btn');
 
-    function showRejectionModal(legalName, leagueName) {
-      const firstName = (legalName || '').trim().split(/\s+/)[0] || 'Applicant';
-      const league = (leagueName || '').trim() || 'your league';
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function showRejectionModal(legalName) {
+      const firstName = escapeHtml((legalName || '').trim().split(/\s+/)[0] || 'Applicant');
       modalText.innerHTML =
-        `I haven&rsquo;t felt a presence like this since last year&rsquo;s <strong>${league}</strong> season. ` +
-        `Yes&hellip; it&rsquo;s <strong>${firstName}</strong>! So, you want to join the Empire? Good, good. ` +
-        `But I should warn you: the Galactic Empire has become a bureaucratic nightmare. Before your ` +
-        `application even reaches the Imperial Council, it must pass through every planet&rsquo;s Circumlocution ` +
-        `Office. You might have better luck with your pad-and-paper draft cheat sheet.`;
+        `<p>You cannot hide from the dark side, <strong>${firstName}</strong>.</p>` +
+        `<p>Your presence &mdash; and your pathetic fantasy roster &mdash; are unmistakable. I knew it was you from the moment you arrived.</p>` +
+        `<p>Deserved or not, your application has been burst-transmitted to the Imperial Council.</p>` +
+        `<p>Their decision will either create a dynasty or crush your season entirely.</p>` +
+        `<p>Check your email in a few minutes, where your fate will be revealed.</p>`;
       modalOverlay.classList.add('show');
     }
 
@@ -479,7 +514,7 @@
         btn.textContent = 'Request Invitation';
         statusEl.className = 'status show ok';
         statusEl.textContent = 'Your application has been received and is under review. You will hear back by email.';
-        showRejectionModal(legalName, payload.leagueName);
+        showRejectionModal(legalName);
       } catch (err) {
         btn.textContent = 'Request Invitation';
         statusEl.className = 'status show err';

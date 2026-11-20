@@ -32,6 +32,7 @@ const SUBJECTS = {
   chairside: '5280 Content - Web Contact Form: Chairside',
   'excel-a-route': '5280 Content - Web Contact Form: Excel-a-Route',
   'territory-text': '5280 Content - Web Contact Form: TerritoryText',
+  'web-design': '5280 Content - Web Contact Form: Web Design',
 };
 const DEFAULT_SUBJECT = SUBJECTS.homepage;
 

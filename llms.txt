@@ -7,7 +7,9 @@ Website: https://www.5280content.com/
 
 ## What we offer
 
-Local web design for businesses in Denver and Colorado. A website build is $500 one time. Hosting is $40 a month and continues until it is canceled. You can cancel anytime. Cancellation takes effect at the end of the current billing period. Hosting is managed in the Stripe customer portal.
+Local web design for businesses in Denver and Colorado. A website build is $500 one time. Hosting is $40 a month and continues until it is canceled. You can cancel anytime. Cancellation takes effect at the end of the current billing period. Hosting is managed in the Stripe customer portal. A free demo of the site is built before you pay.
+
+- Local web design: https://www.5280content.com/web-design
 
 Products described on the site:
 

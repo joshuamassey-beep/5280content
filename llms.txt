@@ -1,0 +1,28 @@
+# 5280 Content
+
+5280 Content LLC is a studio in Denver, Colorado. We build websites, apps, and tools for local businesses.
+
+Email: hello@5280content.com
+Website: https://www.5280content.com/
+
+## What we offer
+
+Local web design for businesses in Denver and Colorado. A website build is $500 one time. Hosting is $40 a month and continues until it is canceled. You can cancel anytime. Cancellation takes effect at the end of the current billing period. Hosting is managed in the Stripe customer portal.
+
+Products described on the site:
+
+- Chairside: SMS booking and reminders for stylists and salons. In development.
+- Excel-a-Route: scheduling and dispatch for route-based service businesses. In development.
+- Chasing36: a public record of one golfer's pursuit of shooting 36. Live at https://chasing36.com
+- TerritoryText: check outreach territories in and out from the web or by text. In development.
+- Massive Empire Fantasy Football Tool: invite-only, live at https://massiveempire.win/
+
+## Key URLs
+
+- Home: https://www.5280content.com/
+- Privacy: https://www.5280content.com/privacy
+- Terms: https://www.5280content.com/terms
+- Chairside: https://www.5280content.com/products/chairside.html
+- Excel-a-Route: https://www.5280content.com/products/excel-a-route.html
+- Chasing36: https://www.5280content.com/products/chasing36.html
+- TerritoryText: https://www.5280content.com/products/territory-text.html

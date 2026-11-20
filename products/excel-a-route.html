@@ -3,381 +3,105 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Excel-a-Route &middot; 5280 Content</title>
+<title>Excel-a-Route · 5280 Content</title>
+<meta name="description" content="Excel-a-Route schedules route-based service work, texts customers their appointment window, and updates the route when the day changes." />
+<link rel="canonical" href="https://www.5280content.com/products/excel-a-route.html" />
+<meta property="og:title" content="Excel-a-Route · 5280 Content" />
+<meta property="og:description" content="Excel-a-Route schedules route-based service work, texts customers their appointment window, and updates the route when the day changes." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.5280content.com/products/excel-a-route.html" />
+<meta property="og:site_name" content="5280 Content" />
+<meta property="og:image" content="https://www.5280content.com/assets/opt/og.5801524d.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="5280 Content logo over the Denver skyline and mountains." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Excel-a-Route · 5280 Content" />
+<meta name="twitter:description" content="Excel-a-Route schedules route-based service work, texts customers their appointment window, and updates the route when the day changes." />
+<meta name="twitter:image" content="https://www.5280content.com/assets/opt/og.5801524d.jpg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --navy: #0b1d2d;
-    --slate: #334155;
-    --steel: #64748b;
-    --light-gray: #e2e8f0;
-    --orange: #f97316;
-    --white: #ffffff;
-    --bg: #ffffff;
-    --surface: #ffffff;
-    --border: var(--light-gray);
-    --text: var(--navy);
-    --muted: var(--steel);
-    --accent: var(--orange);
-    --accent-2: var(--slate);
-    --pill-live: #1f9d55;
-    --pill-live-bg: #e7f8ee;
-    --pill-dev: #b8860b;
-    --pill-dev-bg: #fdf3d9;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  a { color: inherit; }
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 28px 24px 0;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .brand img { height: 28px; width: auto; display: block; }
-  .nav a.back {
-    text-decoration: none;
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
-  .nav a.back:hover { color: var(--text); }
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-  }
-  header.hero { text-align: center; margin-bottom: 40px; }
-  .pill {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 999px;
-    margin-bottom: 16px;
-  }
-  .pill.live { color: var(--pill-live); background: var(--pill-live-bg); }
-  .pill.dev { color: var(--pill-dev); background: var(--pill-dev-bg); }
-  h1 {
-    font-size: 2.1rem;
-    margin: 0 0 12px;
-    letter-spacing: -0.02em;
-  }
-  header.hero p.tagline {
-    color: var(--muted);
-    font-size: 1.1rem;
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.55;
-  }
-  section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 30px 32px;
-    margin-bottom: 22px;
-  }
-  section h2 {
-    margin-top: 0;
-    font-size: 1.1rem;
-  }
-  section p, section li {
-    color: var(--muted);
-    line-height: 1.65;
-    font-size: 0.98rem;
-  }
-  section ul { margin: 0; padding-left: 20px; }
-  section li { margin-bottom: 8px; }
-  .cta-row {
-    text-align: center;
-    margin-top: 34px;
-  }
-  a.btn,
-  button.btn {
-    display: inline-block;
-    text-decoration: none;
-    background: var(--accent);
-    color: white;
-    font-weight: 600;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-size: 1rem;
-  }
-  a.btn:hover,
-  button.btn:hover { background: #e85b2f; }
-  a.btn.secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-  a.btn.secondary:hover { border-color: #c8d0e0; }
-
-  .kicker {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 10px;
-  }
-  .headline {
-    font-size: 1.5rem;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    margin: 0 0 14px;
-  }
-  .lede {
-    color: var(--muted);
-    font-size: 1.02rem;
-    max-width: 560px;
-    margin: 0 0 6px;
-  }
-  .scenario p {
-    color: var(--text);
-    line-height: 1.75;
-    font-size: 1rem;
-    margin: 0 0 6px;
-  }
-  .scenario p.q {
-    font-weight: 700;
-    margin-top: 14px;
-  }
-  .odds-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin: 18px 0 6px;
-  }
-  .odds-card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    background: var(--bg);
-  }
-  .odds-card .pct { font-size: 1.4rem; font-weight: 800; }
-  .odds-card.act .pct { color: #c0392b; }
-  .odds-card.gamble .pct { color: #b8860b; }
-  .odds-card.wait .pct { color: #1f9d55; }
-  .odds-card .odds-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-top: 4px;
-  }
-  .odds-card .odds-desc {
-    font-size: 0.83rem;
-    color: var(--muted);
-    margin-top: 6px;
-    line-height: 1.4;
-  }
-  .compare-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 16px 0 6px;
-  }
-  .compare-card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    background: var(--bg);
-  }
-  .compare-card .pos { font-weight: 700; font-size: 0.9rem; color: var(--muted); }
-  .compare-card .score { font-weight: 800; font-size: 1.1rem; margin: 2px 0 4px; }
-  .compare-card .chance { color: var(--muted); font-size: 0.88rem; }
-  .mode-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-    margin-top: 14px;
-  }
-  .mode-card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    background: var(--bg);
-  }
-  .mode-card h3 { margin: 0 0 8px; font-size: 0.98rem; }
-  .mode-card p { margin: 0; }
-  .closing-block { text-align: center; }
-  .closing-block h2 { font-size: 1.4rem; margin: 0 0 4px; }
-  .closing-block p.tag { color: var(--muted); font-style: italic; margin: 0; }
-
-  .contact-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(11, 29, 45, 0.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 100;
-  }
-  .contact-overlay[hidden] { display: none; }
-  .contact-modal-box {
-    background: var(--white);
-    border-radius: 16px;
-    max-width: 420px;
-    width: 100%;
-    padding: 28px;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(11, 29, 45, 0.35);
-  }
-  .contact-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    border: none;
-    background: none;
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    color: var(--muted);
-    padding: 4px;
-  }
-  .contact-modal-box h3 {
-    margin: 0 0 6px;
-    font-size: 1.25rem;
-    color: var(--navy);
-  }
-  .contact-sub {
-    color: var(--muted);
-    font-size: 0.92rem;
-    margin: 0 0 18px;
-    line-height: 1.5;
-  }
-  #contactForm label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--slate);
-    margin-bottom: 14px;
-  }
-  #contactForm input[type="text"],
-  #contactForm input[type="email"],
-  #contactForm textarea {
-    display: block;
-    width: 100%;
-    margin-top: 6px;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    box-sizing: border-box;
-    color: var(--navy);
-  }
-  #contactForm textarea { resize: vertical; }
-  .contact-submit {
-    width: 100%;
-    border: none;
-    cursor: pointer;
-    margin-top: 4px;
-    font-family: inherit;
-    position: relative;
-  }
-  .contact-submit.is-loading {
-    color: transparent;
-    pointer-events: none;
-  }
-  .contact-submit.is-loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    margin: -8px 0 0 -8px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: contact-spin 0.7s linear infinite;
-  }
-  @keyframes contact-spin {
-    to { transform: rotate(360deg); }
-  }
-  .contact-status {
-    min-height: 1.2em;
-    font-size: 0.88rem;
-    margin: 10px 0 0;
-  }
-  .contact-status.ok { color: #1f9d55; }
-  .contact-status.err { color: #c0392b; }
-  button.cta,
-  button.btn {
-    font-family: inherit;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  .hp-field {
-    position: absolute !important;
-    left: -9999px !important;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-</style>
+<link rel="stylesheet" href="/assets/opt/site.3dcfa032.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Organization",
+    "LocalBusiness"
+  ],
+  "@id": "https://www.5280content.com/#organization",
+  "name": "5280 Content",
+  "legalName": "5280 Content LLC",
+  "url": "https://www.5280content.com/",
+  "logo": "https://www.5280content.com/assets/opt/logo-491.4fd0b026.webp",
+  "image": "https://www.5280content.com/assets/opt/og.5801524d.jpg",
+  "email": "hello@5280content.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Denver",
+    "addressRegion": "CO",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Denver"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Colorado"
+    }
+  ]
+}
+</script>
 </head>
 <body>
-  <div class="nav">
-    <a class="brand" href="/"><img src="/assets/logo-nav.png" alt="5280 Content" /></a>
+  <div class="nav nav-sub">
+    <a class="brand" href="/"><img src="/assets/opt/logo-491.4fd0b026.webp" srcset="/assets/opt/logo-334.3a35d26b.webp 334w, /assets/opt/logo-491.4fd0b026.webp 491w" sizes="(max-width: 640px) 190px, 245px" alt="5280 Content" width="491" height="72" /></a>
     <a class="back" href="/#products">&larr; All products</a>
   </div>
 
   <div class="wrap">
-    <header class="hero">
-      <span class="pill dev">In Development</span>
-      <h1>Excel-a-Route</h1>
-      <p class="tagline">Automated scheduling &amp; dispatch for route-based service businesses.</p>
-    </header>
+      <header class="hero">
+        <span class="pill dev">In Development</span>
+        <h1>Excel-a-Route</h1>
+        <p class="tagline">Automated scheduling &amp; dispatch for route-based service businesses.</p>
+      </header>
 
 
-    <section>
-      <h2>What it does</h2>
-      <p>Excel-a-Route is a scheduling and dispatch tool that keeps route-based service work moving. It automatically
-      contacts customers by text instead of relying on email or another app nobody opens. Customers get their
-      appointment window, technicians get their route for the day, and everything updates automatically when a job
-      runs long or gets rescheduled.</p>
-      <ul>
-        <li><strong>Automated scheduling</strong> &mdash; appointment windows sent and confirmed by text.</li>
-        <li><strong>Route updates</strong> &mdash; technicians and customers stay in sync as the day changes.</li>
-        <li><strong>Built for customization</strong> &mdash; works for any business that runs a route, not just one trade.</li>
-      </ul>
-    </section>
-    <section>
-      <h2>Who it's for</h2>
-      <p>Excel-a-Route <em>(working title)</em> is launching on real routes today with clients who service and
-      inspect equipment &mdash; evaporative cooler service, energy audits, and fire extinguisher inspections.
-      It's built from day one to work for any service-route business: HVAC, pest control, cleaning, maintenance,
-      and beyond.</p>
-    </section>
-    
+      <section>
+        <h2>What it does</h2>
+        <p>Excel-a-Route is a scheduling and dispatch tool that keeps route-based service work moving. It automatically
+        contacts customers by text instead of relying on email or another app nobody opens. Customers get their
+        appointment window, technicians get their route for the day, and everything updates automatically when a job
+        runs long or gets rescheduled.</p>
+        <ul>
+          <li><strong>Automated scheduling</strong> &mdash; appointment windows sent and confirmed by text.</li>
+          <li><strong>Route updates</strong> &mdash; technicians and customers stay in sync as the day changes.</li>
+          <li><strong>Built for customization</strong> &mdash; works for any business that runs a route, not just one trade.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Who it's for</h2>
+        <p>Excel-a-Route <em>(working title)</em> is launching on real routes today with clients who service and
+        inspect equipment &mdash; evaporative cooler service, energy audits, and fire extinguisher inspections.
+        It's built from day one to work for any service-route business: HVAC, pest control, cleaning, maintenance,
+        and beyond.</p>
+      </section>
+      
 
-    <div class="cta-row">
-      <button type="button" class="btn" onclick="openContactModal('excel-a-route')">Get in touch</button>
+      <div class="cta-row">
+        <button type="button" class="btn" onclick="openContactModal('excel-a-route')">Get in touch</button>
+      </div>
     </div>
-  </div>
+
+  <footer>
+    <p>5280 Content LLC · Denver, CO</p>
+    <p><a href="mailto:hello@5280content.com">hello@5280content.com</a></p>
+    <p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+  </footer>
 
   <div class="contact-overlay" id="contactOverlay" hidden>
     <div class="contact-modal-box" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
@@ -386,12 +110,12 @@
       <p class="contact-sub">Tell us a bit about what you need &mdash; we'll follow up by email.</p>
       <form id="contactForm">
         <input type="hidden" name="source" id="contactSource" value="" />
-        <input type="text" name="website" id="contactHoneypot" class="hp-field" tabindex="-1" autocomplete="off" />
+        <input type="text" name="website" id="contactHoneypot" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label>Name
-          <input type="text" name="name" required />
+          <input type="text" name="name" autocomplete="name" required />
         </label>
         <label>Email
-          <input type="email" name="email" required />
+          <input type="email" name="email" autocomplete="email" required />
         </label>
         <label>Message
           <textarea name="message" rows="4" required></textarea>
@@ -402,66 +126,6 @@
     </div>
   </div>
 
-  <script>
-    function openContactModal(source) {
-      document.getElementById('contactSource').value = source;
-      document.getElementById('contactOverlay').hidden = false;
-    }
-    function closeContactModal() {
-      document.getElementById('contactOverlay').hidden = true;
-    }
-    document.getElementById('contactOverlay').addEventListener('click', function (e) {
-      if (e.target === this) closeContactModal();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeContactModal();
-    });
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const statusEl = document.getElementById('contactStatus');
-      const btn = form.querySelector('.contact-submit');
-      const payload = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        message: form.message.value.trim(),
-        source: form.source.value,
-        website: form.website.value,
-      };
-      btn.disabled = true;
-      btn.classList.add('is-loading');
-      statusEl.textContent = 'Sending your message...';
-      statusEl.className = 'contact-status';
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 15000);
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          signal: controller.signal,
-        });
-        clearTimeout(timeoutId);
-        if (!res.ok) throw new Error('Request failed');
-        statusEl.textContent = "Thanks \u2014 we'll get back to you soon.";
-        statusEl.className = 'contact-status ok';
-        form.reset();
-        btn.classList.remove('is-loading');
-        btn.disabled = false;
-        setTimeout(closeContactModal, 1800);
-      } catch (err) {
-        clearTimeout(timeoutId);
-        const timedOut = err && err.name === 'AbortError';
-        statusEl.textContent = timedOut
-          ? 'This is taking longer than expected \u2014 please try again in a moment, or email hello@5280content.com directly.'
-          : 'Something went wrong \u2014 please try again, or email hello@5280content.com directly.';
-        statusEl.className = 'contact-status err';
-        btn.disabled = false;
-        btn.classList.remove('is-loading');
-      }
-    });
-  </script>
+  <script src="/assets/opt/contact.840a5b97.js"></script>
 </body>
 </html>

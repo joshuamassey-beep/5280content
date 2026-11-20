@@ -3,339 +3,55 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>5280 Content &middot; Elevated Ideas. Exceptional Outcomes.</title>
-<meta name="description" content="5280 Content is situated in the mountains of Colorado USA. Our digital content studio builds it all. Apps, sites, graphic design and video, utilites and services that fill a real need." />
+<title>5280 Content · Denver studio for websites, apps, and tools</title>
+<meta name="description" content="5280 Content LLC is a Denver, CO studio. We build websites, apps, and tools for local businesses in Colorado." />
+<link rel="canonical" href="https://www.5280content.com/" />
+<meta property="og:title" content="5280 Content · Denver studio for websites, apps, and tools" />
+<meta property="og:description" content="5280 Content LLC is a Denver, CO studio. We build websites, apps, and tools for local businesses in Colorado." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.5280content.com/" />
+<meta property="og:site_name" content="5280 Content" />
+<meta property="og:image" content="https://www.5280content.com/assets/opt/og.5801524d.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="5280 Content logo over the Denver skyline and mountains." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="5280 Content · Denver studio for websites, apps, and tools" />
+<meta name="twitter:description" content="5280 Content LLC is a Denver, CO studio. We build websites, apps, and tools for local businesses in Colorado." />
+<meta name="twitter:image" content="https://www.5280content.com/assets/opt/og.5801524d.jpg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --navy: #0b1d2d;
-    --slate: #334155;
-    --steel: #64748b;
-    --light-gray: #e2e8f0;
-    --orange: #f97316;
-    --white: #ffffff;
-    --bg: #ffffff;
-    --surface: #ffffff;
-    --border: var(--light-gray);
-    --text: var(--navy);
-    --muted: var(--steel);
-    --accent: var(--orange);
-    --accent-2: var(--slate);
-    --pill-live: #1f9d55;
-    --pill-live-bg: #e7f8ee;
-    --pill-dev: #b8860b;
-    --pill-dev-bg: #fdf3d9;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  a { color: inherit; }
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 22px 24px;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .brand img { height: 36px; width: auto; display: block; }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
-  .nav a.secondary-link {
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--slate);
-    border: 1.5px solid var(--border);
-    padding: 9px 16px;
-    border-radius: 8px;
-    transition: border-color 0.15s ease, color 0.15s ease;
-  }
-  .nav a.secondary-link:hover { color: var(--orange); border-color: var(--orange); }
-  .nav a.cta,
-  .nav button.cta {
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--white);
-    background: var(--orange);
-    padding: 10px 18px;
-    border-radius: 8px;
-    transition: background 0.15s ease;
-  }
-  .nav a.cta:hover,
-  .nav button.cta:hover { background: #e05f0f; }
-
-  .hero-banner {
-    width: 100%;
-    background: var(--navy);
-    line-height: 0;
-  }
-  .hero-banner img {
-    width: 100%;
-    max-height: 620px;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-  }
-  .hero-copy {
-    background: var(--navy);
-    padding: 44px 24px 64px;
-  }
-  .hero-copy .inner {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .hero-copy p {
-    color: #cbd5e1;
-    font-size: 1.15rem;
-    font-weight: 400;
-    line-height: 1.7;
-    margin: 0 0 26px;
-  }
-  .hero-copy p strong {
-    color: var(--white);
-    font-weight: 600;
-  }
-  .hero-copy a.btn {
-    display: inline-block;
-    text-decoration: none;
-    background: var(--orange);
-    color: var(--white);
-    font-weight: 600;
-    padding: 14px 30px;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: background 0.15s ease;
-  }
-  .hero-copy a.btn:hover { background: #e05f0f; }
-
-  .section-heading {
-    max-width: 1160px;
-    margin: 64px auto 0;
-    padding: 0 24px;
-    text-align: center;
-  }
-  .section-heading h2 {
-    font-size: 1.7rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    margin: 0 0 10px;
-  }
-  .section-heading p {
-    color: var(--muted);
-    font-size: 1.02rem;
-    margin: 0;
-  }
-
-  .grid {
-    max-width: 1160px;
-    margin: 32px auto 0;
-    padding: 0 24px 90px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-  }
-  a.card {
-    display: block;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 26px;
-    text-decoration: none;
-    color: var(--text);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-  }
-  a.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(11, 29, 45, 0.1);
-    border-color: #cbd5e1;
-  }
-  .pill {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-  }
-  .pill.live { color: var(--pill-live); background: var(--pill-live-bg); }
-  .pill.dev { color: var(--pill-dev); background: var(--pill-dev-bg); }
-  .card h2 {
-    margin: 0 0 8px;
-    font-size: 1.2rem;
-    font-weight: 700;
-  }
-  .card p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    font-weight: 400;
-  }
-  footer {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.85rem;
-    padding: 0 24px 50px;
-  }
-
-  @media (max-width: 640px) {
-    .nav { padding: 16px 20px; }
-    .brand img { height: 28px; }
-    .nav-links { gap: 10px; }
-    .nav a.secondary-link { display: none; }
-    .nav a.cta,
-  .nav button.cta { padding: 8px 14px; font-size: 0.85rem; }
-    .hero-banner img { max-height: 320px; }
-    .hero-copy { padding: 32px 20px 44px; }
-    .hero-copy p { font-size: 1rem; line-height: 1.6; }
-    .hero-copy a.btn { padding: 12px 24px; font-size: 0.95rem; }
-    .section-heading { margin: 44px auto 0; }
-    .section-heading h2 { font-size: 1.4rem; }
-    .grid { margin: 24px auto 0; padding: 0 20px 60px; gap: 14px; }
-    a.card { padding: 20px; }
-  }
-
-  .contact-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(11, 29, 45, 0.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 100;
-  }
-  .contact-overlay[hidden] { display: none; }
-  .contact-modal-box {
-    background: var(--white);
-    border-radius: 16px;
-    max-width: 420px;
-    width: 100%;
-    padding: 28px;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(11, 29, 45, 0.35);
-  }
-  .contact-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    border: none;
-    background: none;
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    color: var(--muted);
-    padding: 4px;
-  }
-  .contact-modal-box h3 {
-    margin: 0 0 6px;
-    font-size: 1.25rem;
-    color: var(--navy);
-  }
-  .contact-sub {
-    color: var(--muted);
-    font-size: 0.92rem;
-    margin: 0 0 18px;
-    line-height: 1.5;
-  }
-  #contactForm label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--slate);
-    margin-bottom: 14px;
-  }
-  #contactForm input[type="text"],
-  #contactForm input[type="email"],
-  #contactForm textarea {
-    display: block;
-    width: 100%;
-    margin-top: 6px;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    box-sizing: border-box;
-    color: var(--navy);
-  }
-  #contactForm textarea { resize: vertical; }
-  .contact-submit {
-    width: 100%;
-    border: none;
-    cursor: pointer;
-    margin-top: 4px;
-    font-family: inherit;
-    position: relative;
-  }
-  .contact-submit.is-loading {
-    color: transparent;
-    pointer-events: none;
-  }
-  .contact-submit.is-loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    margin: -8px 0 0 -8px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: contact-spin 0.7s linear infinite;
-  }
-  @keyframes contact-spin {
-    to { transform: rotate(360deg); }
-  }
-  .contact-status {
-    min-height: 1.2em;
-    font-size: 0.88rem;
-    margin: 10px 0 0;
-  }
-  .contact-status.ok { color: #1f9d55; }
-  .contact-status.err { color: #c0392b; }
-  button.cta,
-  button.btn {
-    font-family: inherit;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  .hp-field {
-    position: absolute !important;
-    left: -9999px !important;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-</style>
+<link rel="preload" as="image" type="image/webp" href="/assets/opt/hero-800.e86d4c15.webp" imagesrcset="/assets/opt/hero-800.e86d4c15.webp 800w, /assets/opt/hero-1200.ee1c9604.webp 1200w, /assets/opt/hero-1779.bc72183e.webp 1779w" imagesizes="100vw" fetchpriority="high" />
+<link rel="stylesheet" href="/assets/opt/site.3dcfa032.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness"],
+  "@id": "https://www.5280content.com/#organization",
+  "name": "5280 Content",
+  "legalName": "5280 Content LLC",
+  "url": "https://www.5280content.com/",
+  "logo": "https://www.5280content.com/assets/opt/logo-491.4fd0b026.webp",
+  "image": "https://www.5280content.com/assets/opt/og.5801524d.jpg",
+  "email": "hello@5280content.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Denver",
+    "addressRegion": "CO",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Denver" },
+    { "@type": "AdministrativeArea", "name": "Colorado" }
+  ]
+}
+</script>
 </head>
 <body>
   <div class="nav">
-    <a class="brand" href="/"><img src="/assets/logo-nav.png" alt="5280 Content" /></a>
+    <a class="brand" href="/"><img src="/assets/opt/logo-491.4fd0b026.webp" srcset="/assets/opt/logo-334.3a35d26b.webp 334w, /assets/opt/logo-491.4fd0b026.webp 491w" sizes="(max-width: 640px) 190px, 245px" alt="5280 Content" width="491" height="72" /></a>
     <div class="nav-links">
       <a class="secondary-link" href="#products">See what we're building</a>
       <button type="button" class="cta" onclick="openContactModal('homepage')">Get in touch</button>
@@ -343,10 +59,14 @@
   </div>
 
   <div class="hero-banner">
-    <img src="/assets/hero.jpg" alt="5280 Content &mdash; Elevated Ideas. Exceptional Outcomes. Denver skyline at dusk." />
+    <picture>
+      <source type="image/webp" srcset="/assets/opt/hero-800.e86d4c15.webp 800w, /assets/opt/hero-1200.ee1c9604.webp 1200w, /assets/opt/hero-1779.bc72183e.webp 1779w" sizes="100vw" />
+      <img src="/assets/opt/hero-1200.df7bb180.jpg" srcset="/assets/opt/hero-800.b073a633.jpg 800w, /assets/opt/hero-1200.df7bb180.jpg 1200w, /assets/opt/hero-1779.cbdc205c.jpg 1779w" sizes="100vw" width="1779" height="884" alt="5280 Content logo over the Denver skyline and mountains." fetchpriority="high" />
+    </picture>
   </div>
   <div class="hero-copy">
     <div class="inner">
+      <h1>A Denver studio for local business websites, apps, and tools.</h1>
       <p>We build apps, sites, and services that solve a <strong>real</strong> problem &mdash; nothing built just to exist. 5280 is the elevated launch pad for whatever digital service a small or medium-sized business needs. Your business deserves the same level of tools major corporations use, but at a scale you can afford. It's the same standard on everything we ship: <strong>elevated ideas, exceptional outcomes.</strong></p>
     </div>
   </div>
@@ -359,36 +79,40 @@
   <div class="grid" id="products">
     <a class="card" href="/products/chairside.html">
       <span class="pill dev">In Development</span>
-      <h2>Chairside</h2>
+      <h3>Chairside</h3>
       <p>SMS booking and reminders built for stylists and salons &mdash; fewer no-shows, easier rebooking.</p>
     </a>
 
     <a class="card" href="/products/excel-a-route.html">
       <span class="pill dev">In Development</span>
-      <h2>Excel-a-Route</h2>
+      <h3>Excel-a-Route</h3>
       <p>Automated scheduling and dispatch for route-based service businesses, from inspections to maintenance.</p>
     </a>
 
     <a class="card" href="/products/chasing36.html">
       <span class="pill live">Live</span>
-      <h2>Chasing36</h2>
+      <h3>Chasing36</h3>
       <p>A passion project chronicling one golfer's pursuit of shooting 36.</p>
     </a>
 
     <a class="card" href="/products/territory-text.html">
       <span class="pill dev">In Development</span>
-      <h2>TerritoryText</h2>
+      <h3>TerritoryText</h3>
       <p>Check outreach territories in and out from the web or by text, logged automatically.</p>
     </a>
 
     <a class="card" href="https://massiveempire.win/">
       <span class="pill live">Live</span>
-      <h2>Massive Empire Fantasy Football Tool</h2>
+      <h3>Massive Empire Fantasy Football Tool</h3>
       <p>An invite-only analytics tool for fantasy football domination.</p>
     </a>
   </div>
 
-  <footer>&copy; 2026 5280 Content &middot; Denver, CO</footer>
+  <footer>
+    <p>5280 Content LLC · Denver, CO</p>
+    <p><a href="mailto:hello@5280content.com">hello@5280content.com</a></p>
+    <p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+  </footer>
 
   <div class="contact-overlay" id="contactOverlay" hidden>
     <div class="contact-modal-box" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
@@ -397,12 +121,12 @@
       <p class="contact-sub">Tell us a bit about what you need &mdash; we'll follow up by email.</p>
       <form id="contactForm">
         <input type="hidden" name="source" id="contactSource" value="" />
-        <input type="text" name="website" id="contactHoneypot" class="hp-field" tabindex="-1" autocomplete="off" />
+        <input type="text" name="website" id="contactHoneypot" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label>Name
-          <input type="text" name="name" required />
+          <input type="text" name="name" autocomplete="name" required />
         </label>
         <label>Email
-          <input type="email" name="email" required />
+          <input type="email" name="email" autocomplete="email" required />
         </label>
         <label>Message
           <textarea name="message" rows="4" required></textarea>
@@ -412,67 +136,6 @@
       </form>
     </div>
   </div>
-
-  <script>
-    function openContactModal(source) {
-      document.getElementById('contactSource').value = source;
-      document.getElementById('contactOverlay').hidden = false;
-    }
-    function closeContactModal() {
-      document.getElementById('contactOverlay').hidden = true;
-    }
-    document.getElementById('contactOverlay').addEventListener('click', function (e) {
-      if (e.target === this) closeContactModal();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeContactModal();
-    });
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const statusEl = document.getElementById('contactStatus');
-      const btn = form.querySelector('.contact-submit');
-      const payload = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        message: form.message.value.trim(),
-        source: form.source.value,
-        website: form.website.value,
-      };
-      btn.disabled = true;
-      btn.classList.add('is-loading');
-      statusEl.textContent = 'Sending your message...';
-      statusEl.className = 'contact-status';
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 15000);
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          signal: controller.signal,
-        });
-        clearTimeout(timeoutId);
-        if (!res.ok) throw new Error('Request failed');
-        statusEl.textContent = "Thanks \u2014 we'll get back to you soon.";
-        statusEl.className = 'contact-status ok';
-        form.reset();
-        btn.classList.remove('is-loading');
-        btn.disabled = false;
-        setTimeout(closeContactModal, 1800);
-      } catch (err) {
-        clearTimeout(timeoutId);
-        const timedOut = err && err.name === 'AbortError';
-        statusEl.textContent = timedOut
-          ? 'This is taking longer than expected \u2014 please try again in a moment, or email hello@5280content.com directly.'
-          : 'Something went wrong \u2014 please try again, or email hello@5280content.com directly.';
-        statusEl.className = 'contact-status err';
-        btn.disabled = false;
-        btn.classList.remove('is-loading');
-      }
-    });
-  </script>
+  <script src="/assets/opt/contact.840a5b97.js"></script>
 </body>
 </html>

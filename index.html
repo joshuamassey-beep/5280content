@@ -23,8 +23,23 @@
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-<link rel="preload" as="image" type="image/webp" href="/assets/opt/hero-800.e86d4c15.webp" imagesrcset="/assets/opt/hero-800.e86d4c15.webp 800w, /assets/opt/hero-1200.ee1c9604.webp 1200w, /assets/opt/hero-1779.bc72183e.webp 1779w" imagesizes="100vw" fetchpriority="high" />
+<link rel="preload" as="image" type="image/webp" href="/assets/opt/hero-800.e86d4c15.webp" imagesrcset="/assets/opt/hero-800.e86d4c15.webp 800w, /assets/opt/hero-1200.ee1c9604.webp 1200w, /assets/opt/hero-1779.bc72183e.webp 1779w" imagesizes="100vw" media="(max-width: 899px)" fetchpriority="high" />
+<link rel="preload" as="image" type="image/webp" href="/assets/opt/hero-desk-1200.fd1dcd35.webp" imagesrcset="/assets/opt/hero-desk-1200.fd1dcd35.webp 1200w, /assets/opt/hero-desk-1779.e4f742bf.webp 1779w" imagesizes="(min-width: 1779px) 1779px, 100vw" media="(min-width: 900px)" fetchpriority="high" />
 <link rel="stylesheet" href="/assets/opt/site.3dcfa032.css" />
+<style>
+  @media (min-width: 900px) {
+    .hero-banner { display: flex; justify-content: center; background: #0b1d2d; }
+    .hero-banner picture { display: block; width: 100%; max-width: 1779px; }
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      max-height: 744px;
+      aspect-ratio: 1779 / 744;
+      object-fit: cover;
+      object-position: center 62%;
+    }
+  }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,6 +75,8 @@
 
   <div class="hero-banner">
     <picture>
+      <source media="(min-width: 900px)" type="image/webp" srcset="/assets/opt/hero-desk-1200.fd1dcd35.webp 1200w, /assets/opt/hero-desk-1779.e4f742bf.webp 1779w" sizes="(min-width: 1779px) 1779px, 100vw" />
+      <source media="(min-width: 900px)" type="image/jpeg" srcset="/assets/opt/hero-desk-1200.3f09a2bd.jpg 1200w, /assets/opt/hero-desk-1779.f0f7b406.jpg 1779w" sizes="(min-width: 1779px) 1779px, 100vw" />
       <source type="image/webp" srcset="/assets/opt/hero-800.e86d4c15.webp 800w, /assets/opt/hero-1200.ee1c9604.webp 1200w, /assets/opt/hero-1779.bc72183e.webp 1779w" sizes="100vw" />
       <img src="/assets/opt/hero-1200.df7bb180.jpg" srcset="/assets/opt/hero-800.b073a633.jpg 800w, /assets/opt/hero-1200.df7bb180.jpg 1200w, /assets/opt/hero-1779.cbdc205c.jpg 1779w" sizes="100vw" width="1779" height="884" alt="5280 Content logo over the Denver skyline and mountains." fetchpriority="high" />
     </picture>

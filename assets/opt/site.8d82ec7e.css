@@ -145,6 +145,14 @@ a { color: inherit; }
 .nav a.back { color: var(--muted); }
 .nav a.secondary-link:hover { color: var(--navy); border-color: var(--slate); }
 .nav a.back:hover { color: var(--text); }
+.nav a.nav-link {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--slate);
+}
+.nav a.nav-link:hover,
+.nav a.nav-link[aria-current="page"] { color: var(--navy); }
 .nav a.cta,
 .nav button.cta,
 a.btn,
@@ -236,6 +244,17 @@ button.btn:hover { background: var(--btn-hover); }
   color: var(--muted);
   font-size: 1.02rem;
   margin: 0;
+}
+.section-heading p.offer-price,
+.wrap .price-line {
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-top: 14px;
+}
+.section-heading a.offer-link {
+  color: var(--navy);
+  font-weight: 700;
 }
 .grid {
   max-width: 1160px;
@@ -444,8 +463,9 @@ footer a { color: var(--slate); text-decoration: underline; }
 }
 
 @media (max-width: 640px) {
-  .nav { padding: 16px 20px; }
+  .nav { padding: 16px 20px; flex-wrap: wrap; row-gap: 12px; }
   .nav-sub { padding: 16px 20px 0; }
+  .nav-links { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
   .brand img,
   .nav-sub .brand img { width: 190.94px; height: 28px; }
   .nav-links { gap: 10px; }
